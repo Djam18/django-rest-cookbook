@@ -21,6 +21,10 @@ INSTALLED_APPS = [
     'products',
 ]
 
+# add this later maybe
+# REST_FRAMEWORK = {}
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
