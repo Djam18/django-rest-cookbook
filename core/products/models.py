@@ -7,6 +7,8 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.IntegerField()
     category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
+    # Django 3.1: JSONField now works with SQLite too (no longer PostgreSQL-only)
+    metadata = models.JSONField(default=dict, blank=True)
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
