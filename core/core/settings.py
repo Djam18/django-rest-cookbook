@@ -99,3 +99,6 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+# Django 3.2: suppress auto-field warnings
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
