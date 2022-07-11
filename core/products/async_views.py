@@ -1,6 +1,7 @@
-"""Experimental async views — Django 3.2 feature exploration.
+"""Async views — Django 4.1 async ORM support.
 
-Note: DRF doesn't support async natively yet. These are plain Django async views.
+Django 4.1 adds async versions of ORM methods (acount, aget, afilter, etc.).
+DRF doesn't support async natively yet, so these are plain Django views.
 """
 from django.http import JsonResponse
 from .models import Product
@@ -9,10 +10,26 @@ from .models import Product
 async def product_count(request):
     """Async view returning total product count.
 
-    Django 3.2 supports async views — experimenting here.
-    Not yet integrated with DRF serializers.
+    Django 4.1: can call ORM methods directly in async context.
     """
-    # sync_to_async needed for ORM calls in async context
-    from asgiref.sync import sync_to_async
-    count = await sync_to_async(Product.objects.count)()
+    # Django 4.1 async ORM: acount() instead of sync_to_async wrapper
+    count = await Product.objects.acount()
     return JsonResponse({"count": count})
+
+
+async def product_detail_async(request, pk):
+    """Async detail view experiment.
+
+    Django 4.1 supports aget() for single object retrieval.
+    """
+    try:
+        product = await Product.objects.aget(pk=pk)
+    except Product.DoesNotExist:
+        return JsonResponse({"error": "not found"}, status=404)
+
+    return JsonResponse({
+        "id": product.pk,
+        "name": product.name,
+        "price": str(product.price),
+        "stock": product.stock,
+    })
