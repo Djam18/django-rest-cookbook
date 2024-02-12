@@ -10,6 +10,8 @@ class Product(models.Model):
     # Django 3.1: JSONField now works with SQLite too (no longer PostgreSQL-only)
     metadata = models.JSONField(default=dict, blank=True)
     created = models.DateTimeField(auto_now_add=True)
+    # Django 5.0: db_default — database-level default (no Python round-trip)
+    is_featured = models.BooleanField(db_default=False)
 
     class Meta:
         constraints = [

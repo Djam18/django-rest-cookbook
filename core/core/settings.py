@@ -104,7 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
-USE_L10N = True  # deprecated in 4.0, removed in 5.0 - keeping for now
+# USE_L10N removed in Django 5.0 (was deprecated since 4.0)
 USE_TZ = True
 
 STATIC_URL = '/static/'
