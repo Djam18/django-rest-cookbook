@@ -7,9 +7,10 @@ name = "django-rest-cookbook"
 version = "0.1.0"
 requires-python = ">=3.11"
 dependencies = [
-    "Django==4.2",
+    "Django==5.0",
     "djangorestframework==3.14.0",
-    "django-filter==22.1",
+    "django-filter==23.5",
+    "drf-spectacular==0.27.0",
 ]
 
 [project.optional-dependencies]
@@ -29,8 +30,11 @@ line-length = 100
 select = ["E", "F", "I", "UP", "B", "DJ"]
 ignore = ["E501"]
 
+[tool.ruff.lint.isort]
+known-first-party = ["products", "categories"]
+
 [tool.mypy]
-python_version = "3.11"
+python_version = "3.12"
 strict = true
 plugins = ["mypy_django_plugin.main"]
 
