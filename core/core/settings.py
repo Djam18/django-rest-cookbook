@@ -111,3 +111,13 @@ STATIC_URL = '/static/'
 
 # Django 3.2: suppress auto-field warnings
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+# Django 6.0: Content Security Policy (native, replaces django-csp)
+CONTENT_SECURITY_POLICY = {
+    'DIRECTIVES': {
+        'default-src': ["'self'"],
+        'script-src': ["'self'"],
+        'style-src': ["'self'", "'unsafe-inline'"],
+        'img-src': ["'self'", 'data:'],
+    }
+}
